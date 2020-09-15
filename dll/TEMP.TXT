@@ -1,0 +1,105 @@
+    struct   pei_fan_type
+		   {
+              char  _number[8];         /*配方编号*/
+              char  cai_number[8];      /* 材料编号 */
+              char  name[15];            /*材料名称*/
+              int   mathine;           /*机组号    0    1 2 */
+              char  wna[5];              /* 秤名  ban1       炭黑枰
+                                                       ban2     油料枰1
+                                                       ban3     油料秤2
+                                                       ban4     胶料秤*/
+             char   dou[5];         /* 斗号     dou1
+                                                    斗1    dou2
+                                                    斗2    dou3
+                                                */
+            float    fast_do;              /* 快慢提前量 */
+            float    drop_do;              /* 点动提前量 */
+            float    control_time;         /* 控制时间 */
+            int      add_time;              /*加料次数 */
+            int      stop_time;             /*稳定时间 */
+
+            float    weight;               /* 所需重量 */
+            float    gon_cha;              /* 允许公差 */
+            float      get_weight;           /*实际重量  应为 int*/
+        };
+
+       struct run_table         /* vb-->dll --->VB */
+       {
+                                short  total_che; /*总车数*/
+				short  now_che;/*第几车*/
+				short  all_duan;/* 总段 */
+				short  ban;		/*班  */
+				short  mathine;  /*机号 */
+				long  all_time;	  /*总工作时间 */
+				long  all_che_time;	/*总一车时间 */
+				long  duan_time; /*段时间 */
+                                char _number[8];  /*配方编号 */
+                                char  name[18];   /*配方名称 */
+        };
+
+         struct  make_table         //每车一次 dll->库 
+         {
+                  long     only_key;       /*关键字 唯一  生产完一个记录 */
+                  char     m_number[8];       /*配方编号 */
+                  char     name[18];     /* 配方名称 */
+                  int      ban;     //        班号
+                  int      che;   //          车数
+                  int      mathine;         /*机组号*/
+                  int      now_che;        /*当前车数*/
+                  char     now_duan;      /*当前段数 */
+                  int      flag;    //        标志     0 没进行  1---正在进行  2---已完成
+                  char     m_date[14];
+                  char     m_time[14];
+        };
+
+            struct   make_base_type         /* 配方基本数据 */
+            {
+                  char  sj1_sum;     /* 当前第一次胶料个数 */
+                  char  sj2_sum;     /* 当前第二次胶料个数 */
+                  char  th1_sum;     /* 当前第一次粉料个数 */
+                  char  th2_sum;     /* 当前第二次粉料个数 */
+                  char  yz1_sum;     /* 当前第一次油一个数 */
+                  char  yz2_sum;     /* 当前第二次油一个数 */
+                  char  yt1_sum;     /* 当前第一次油二个数 */
+                  char  yt2_sum;     /* 当前第二次油二个数 */
+
+                  char  pei_max;     /* 最大段数 */
+
+                  struct   pei_fan_type  th1[10];  /* 炭黑1配方 */
+                  struct   pei_fan_type  th2[10];  /* 炭黑2配方 */
+                  struct   pei_fan_type  sj1[10];  /* 胶料1配方 */
+                  struct   pei_fan_type  sj2[10];  /* 胶料2配方 */
+                  struct   pei_fan_type  yz1[10];  /* 油一1配方 */
+                  struct   pei_fan_type  yz2[10];  /* 油一2配方 */
+                  struct   pei_fan_type  yt1[10];  /* 油二1配方 */
+                  struct   pei_fan_type  yt2[10];  /* 油二2配方 */
+
+
+                  float  get_weight;      /*小料 实重  */
+                  int  name;             /*  小料名称  */
+                  int   get_pai_time;         /* 实际排料时间 */
+
+                  int   huan_time;             /*混炼总时间  */
+                  int   pai_tempro;            /*排料时温度  */
+                  int   all_power;            /*消耗总能量  */
+            };
+
+
+        struct power_tempro				//温度记录
+        {
+                int duan_hao;
+                int flag;
+                int total;
+                int ptr;
+                int power[600];
+                int tempro[600];
+        };
+
+
+WINMMAPI int WINAPI  read_produce(struct Produce_type  *temp);
+WINMMAPI int WINAPI  read_run(struct run_table* x,int *run_flag);
+WINMMAPI int WINAPI  write_run(struct run_table *x,int  run_flag );
+WINMMAPI int WINAPI  write_power(int,int,int,int);
+int write_make(struct make_lian_liao make_input);//flag =0  第一次
+int get_make_table_first(char * pei_number,char  *name,char ban,char total_che,char flag);
+int write_che(struct make_base_type temp);

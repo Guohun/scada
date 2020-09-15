@@ -1,0 +1,275 @@
+ %% PLEASE DO NOT MODIFY OR DELETE THIS FILE! %% 
+ %% This file contains information about the installation of an application. %% 
+ %% It will be used to automatically remove all application components from your computer if you choose to do so. %% 
+
+
+NOTE: Beginning of the bootstrapper section
+
+CONFIG: Title: "炼胶系统"
+
+ACTION: TempFile: "C:\WINDOWS\setup1.exe"
+(File was not found or was an older version -- new file copied)
+
+ACTION: RegKey: "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion", "SharedDLLs"
+
+ACTION: SharedFile: "C:\WINDOWS\SYSTEM\VB5StKit.dll"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SystemFile: "C:\WINDOWS\SYSTEM\MSVBVM50.dll"
+(File currently on disk was already up to date)
+
+ACTION: SystemFile: "C:\WINDOWS\SYSTEM\StdOle2.tlb"
+(File currently on disk was already up to date)
+
+ACTION: SystemFile: "C:\WINDOWS\SYSTEM\OleAut32.dll"
+(File currently on disk was already up to date)
+
+ACTION: SystemFile: "C:\WINDOWS\SYSTEM\OlePro32.dll"
+(File currently on disk was already up to date)
+
+ACTION: SystemFile: "C:\WINDOWS\SYSTEM\AsycFilt.dll"
+(File currently on disk was already up to date)
+
+NOTE: The file 'Ctl3d32.dll' was not copied because it is intended for use under Windows NT 3.51 only.  It is not needed under Windows 95 or NT 4.0.
+
+ACTION: SystemFile: "C:\WINDOWS\SYSTEM\ComCat.dll"
+(File currently on disk was already up to date)
+
+ACTION: DllSelfRegister: "C:\WINDOWS\SYSTEM\MSVBVM50.dll"
+
+ACTION: TLBRegister: "C:\WINDOWS\SYSTEM\StdOle2.tlb"
+
+ACTION: DllSelfRegister: "C:\WINDOWS\SYSTEM\OleAut32.dll"
+
+ACTION: DllSelfRegister: "C:\WINDOWS\SYSTEM\OlePro32.dll"
+
+ACTION: DllSelfRegister: "C:\WINDOWS\SYSTEM\ComCat.dll"
+
+NOTE: End of the bootstrapper section
+
+NOTE: Now spawning the main Setup program 'C:\WINDOWS\setup1.exe'....
+
+ACTION: CreateDir: "c:\ljxt"
+
+ACTION: SharedFile: "C:\WINDOWS\SYSTEM\DBGRID32.OCX"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\WINDOWS\SYSTEM\GRID32.OCX"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SystemFile: "C:\WINDOWS\SYSTEM\MFC40.dll"
+(File currently on disk was already up to date)
+
+ACTION: SystemFile: "C:\WINDOWS\SYSTEM\MSVCRT40.dll"
+(File currently on disk was already up to date)
+
+ACTION: SharedFile: "C:\WINDOWS\SYSTEM\SPIN32.OCX"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\WINDOWS\SYSTEM\THREED32.OCX"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\WINDOWS\SYSTEM\TABCTL32.OCX"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\WINDOWS\SYSTEM\COMDLG32.OCX"
+(File was not found or was an older version -- new file copied)
+
+ACTION: CreateDir: "C:\Program Files\Common Files\Microsoft Shared\DAO"
+
+ACTION: SharedFile: "C:\Program Files\Common Files\Microsoft Shared\DAO\dao2535.tlb"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\Program Files\Common Files\Microsoft Shared\DAO\DAO350.dll"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SystemFile: "C:\WINDOWS\SYSTEM\MSJtEr35.dll"
+(File currently on disk was already up to date)
+
+ACTION: SystemFile: "C:\WINDOWS\SYSTEM\MSJInt35.dll"
+(File currently on disk was already up to date)
+
+ACTION: SharedFile: "C:\WINDOWS\SYSTEM\COMCTL32.OCX"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\WINDOWS\SYSTEM\MCI32.OCX"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\WINDOWS\SYSTEM\z_lj_dll.dll"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\WINDOWS\SYSTEM\api232.dll"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\WINDOWS\SYSTEM\vbc.dll"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SystemFile: "C:\WINDOWS\SYSTEM\MSJet35.dll"
+(File currently on disk was already up to date)
+
+ACTION: SystemFile: "C:\WINDOWS\SYSTEM\VBAJet32.dll"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\WINDOWS\SYSTEM\VB5DB.dll"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SystemFile: "C:\WINDOWS\SYSTEM\MSRD2x35.dll"
+(File currently on disk was already up to date)
+
+ACTION: SystemFile: "C:\WINDOWS\SYSTEM\MsRepl35.dll"
+(File currently on disk was already up to date)
+
+ACTION: SystemFile: "C:\WINDOWS\SYSTEM\ODBCJt32.dll"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SystemFile: "C:\WINDOWS\SYSTEM\ODBCJI32.dll"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SystemFile: "C:\WINDOWS\SYSTEM\ODBCTL32.dll"
+(File was not found or was an older version -- new file copied)
+
+ACTION: PrivateFile: "c:\ljxt\visdat32.hlp"
+(File was not found or was an older version -- new file copied)
+
+ACTION: PrivateFile: "c:\ljxt\VISDAT32.exe"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\WINDOWS\SYSTEM\CFX32.OCX"
+(File was not found or was an older version -- new file copied)
+
+ACTION: PrivateFile: "c:\ljxt\system.ini"
+(File was not found or was an older version -- new file copied)
+
+ACTION: PrivateFile: "c:\ljxt\ljm.exe"
+(File was not found or was an older version -- new file copied)
+
+ACTION: PrivateFile: "c:\ljxt\simulate.exe"
+(File was not found or was an older version -- new file copied)
+
+ACTION: PrivateFile: "c:\ljxt\MAKE.MDB"
+(File was not found or was an older version -- new file copied)
+
+ACTION: PrivateFile: "c:\ljxt\COMM.MDB"
+(File was not found or was an older version -- new file copied)
+
+ACTION: PrivateFile: "c:\ljxt\ljxt.ldb"
+(File was not found or was an older version -- new file copied)
+
+ACTION: PrivateFile: "c:\ljxt\LJXT.MDB"
+(File was not found or was an older version -- new file copied)
+
+ACTION: PrivateFile: "c:\ljxt\MAKE.ldb"
+(File was not found or was an older version -- new file copied)
+
+ACTION: PrivateFile: "c:\ljxt\COMM.LDB"
+(File was not found or was an older version -- new file copied)
+
+ACTION: CreateDir: "c:\ljxt\wave"
+
+ACTION: PrivateFile: "c:\ljxt\wave\default.wav"
+(File was not found or was an older version -- new file copied)
+
+ACTION: CreateDir: "c:\ljxt\wave\china"
+
+ACTION: PrivateFile: "c:\ljxt\wave\china\5.wav"
+(File was not found or was an older version -- new file copied)
+
+ACTION: CreateDir: "c:\ljxt\tkbmp"
+
+ACTION: PrivateFile: "c:\ljxt\tkbmp\AllMdb.mdb"
+(File was not found or was an older version -- new file copied)
+
+ACTION: PrivateFile: "c:\ljxt\tkbmp\TK0002.ldb"
+(File was not found or was an older version -- new file copied)
+
+ACTION: PrivateFile: "c:\ljxt\tkbmp\TK0002.mdb"
+(File was not found or was an older version -- new file copied)
+
+ACTION: PrivateFile: "c:\ljxt\tkbmp\TK0003.ldb"
+(File was not found or was an older version -- new file copied)
+
+ACTION: PrivateFile: "c:\ljxt\tkbmp\tk0003.mdb"
+(File was not found or was an older version -- new file copied)
+
+ACTION: PrivateFile: "c:\ljxt\tkbmp\TK0005.ldb"
+(File was not found or was an older version -- new file copied)
+
+ACTION: PrivateFile: "c:\ljxt\tkbmp\TK0005.mdb"
+(File was not found or was an older version -- new file copied)
+
+ACTION: PrivateFile: "c:\ljxt\tkbmp\TK0006.ldb"
+(File was not found or was an older version -- new file copied)
+
+ACTION: PrivateFile: "c:\ljxt\tkbmp\TK0006.mdb"
+(File was not found or was an older version -- new file copied)
+
+ACTION: PrivateFile: "c:\ljxt\tkbmp\TKMAKER.exe"
+(File was not found or was an older version -- new file copied)
+
+ACTION: PrivateFile: "c:\ljxt\you.txt"
+(File was not found or was an older version -- new file copied)
+
+ACTION: PrivateFile: "c:\ljxt\hun.txt"
+(File was not found or was an older version -- new file copied)
+
+ACTION: PrivateFile: "c:\ljxt\jiao.txt"
+(File was not found or was an older version -- new file copied)
+
+ACTION: PrivateFile: "c:\ljxt\tan.txt"
+(File was not found or was an older version -- new file copied)
+
+ACTION: PrivateFile: "c:\ljxt\fan.txt"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\WINDOWS\SYSTEM\MFC42.DLL"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\WINDOWS\SYSTEM\MSVCRT.DLL"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\WINDOWS\SYSTEM\msvcrtd.dll"
+(File was not found or was an older version -- new file copied)
+
+ACTION: SharedFile: "C:\WINDOWS\SYSTEM\WINMM.DLL"
+(File currently on disk was already up to date)
+
+ACTION: PrivateFile: "c:\ljxt\tkbmp\modaltk.mdb"
+(File was not found or was an older version -- new file copied)
+
+ACTION: PrivateFile: "c:\ljxt\tkbmp\modaltk.ldb"
+(File was not found or was an older version -- new file copied)
+
+ACTION: DllSelfRegister: "C:\WINDOWS\SYSTEM\DBGRID32.OCX"
+
+ACTION: DllSelfRegister: "C:\WINDOWS\SYSTEM\GRID32.OCX"
+
+ACTION: DllSelfRegister: "C:\WINDOWS\SYSTEM\MFC40.dll"
+
+ACTION: DllSelfRegister: "C:\WINDOWS\SYSTEM\SPIN32.OCX"
+
+ACTION: DllSelfRegister: "C:\WINDOWS\SYSTEM\THREED32.OCX"
+
+ACTION: DllSelfRegister: "C:\WINDOWS\SYSTEM\TABCTL32.OCX"
+
+ACTION: DllSelfRegister: "C:\WINDOWS\SYSTEM\COMDLG32.OCX"
+
+ACTION: TLBRegister: "C:\Program Files\Common Files\Microsoft Shared\DAO\dao2535.tlb"
+
+ACTION: DllSelfRegister: "C:\Program Files\Common Files\Microsoft Shared\DAO\DAO350.dll"
+
+ACTION: DllSelfRegister: "C:\WINDOWS\SYSTEM\COMCTL32.OCX"
+
+ACTION: DllSelfRegister: "C:\WINDOWS\SYSTEM\MCI32.OCX"
+
+ACTION: DllSelfRegister: "C:\WINDOWS\SYSTEM\MSRD2x35.dll"
+
+ACTION: DllSelfRegister: "C:\WINDOWS\SYSTEM\CFX32.OCX"
+
+ACTION: DllSelfRegister: "C:\WINDOWS\SYSTEM\MFC42.DLL"
+
+ACTION: ShellLink: "", "炼胶系统"
+
+ACTION: RegKey: "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion", "App Paths\VISDAT32.exe"
+
+ACTION: RegValue: "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\VISDAT32.exe", ""
+

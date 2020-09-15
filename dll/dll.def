@@ -1,0 +1,63 @@
+LIBRARY z_lj_dll
+DATA  READ WRITE
+SECTIONS
+	sdata  READ  WRITE SHARED
+
+EXPORTS
+	UpperCaseByRef	
+	Init_Font		
+    write_power     
+    read_power      
+	 read_produce       
+	 read_run			
+	 write_make			
+     write_che          
+	 Z_DLL_Close_All	
+	 write_error        
+	 read_error			
+	 kill_error			
+         read_Tan_dou   
+         write_Tan_dou  
+	 read_elec_input	
+	 read_elec_output	
+	 init_elec_input	
+	 init_elec_output	
+	 write_elec_input	
+	 write_elec_output	
+	 write_select_ban	
+	 read_select_ban	
+         write_ban      
+         read_ban      
+         get_error      
+		 P_DO			
+		 V_DO			
+		 Init_P			
+		 Init_V			
+         VBwrite_multi_screen            
+                 read_You_dou   
+                 write_You_dou  
+                 write_multi_screen             
+                 Clear_multi_screen             
+                 read_ri_chu_dou    
+                 write_ri_chu_dou   
+			write_run			
+			read_send_table		
+			can_read			
+			Sio_Open_All		
+			Get_Elec_Check_Table
+			Set_Turn			
+			Set_Light			
+			Read_VbKey			
+			Write_VbKey			
+			Set_multi_screen	
+			read_Fsml_table
+			write_Fsml_table
+			read_Fssb_table
+			write_chans
+			write_runfch
+			read_fen_statu
+			write_Fs_command
+			read_Fs_command     
+			read_fen_ban
+			read_grap
+			write_grap

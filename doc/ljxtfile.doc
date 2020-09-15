@@ -1,0 +1,97 @@
+		                VB源程序清单
+						(第二版 含风送系统部分)
+											作者：朱国魂
+											1998.10.6日
+   说明：
+   本列表包含了炼胶生产系统VB文件的路径，重新编译时必须以原有路径设置好
+且对于主程序的设置不得修改，否则可能无法得到结果
+   编译条件：
+        Vitual Basica 5.0, Vitual Basica 4.0, Delphi2.0
+        要求:先安装炼胶系统安装程序，且可正确运行，否则，可能无法得到正确结果
+一、Form  窗口文件                                      
+		路径，文件名	             			功能
+        c:\ljxt\main_form.Frm                主程序
+        c:\ljxt\Prep_Cai_Liao.Frm            材料预处理
+        c:\ljxt\produce.Frm                  生产命令
+        c:\ljxt\tan_hei_table.frm            炭黑输入
+        c:\ljxt\send_file_form.frm           文件接收与发送
+        c:\ljxt\Comm.frm		     设备管理 		
+        c:\ljxt\comm_fen.frm		     风送系统设备管理 
+        c:\ljxt\comm_set_Form.frm	     多用户卡设置	
+        c:\ljxt\FIND.FRM                     数据查询界面
+        c:\ljxt\Pei_fan_table_Input.frm      配方目录输入
+        c:\ljxt\Cai_liao_table_Input.frm     材料输入
+        c:\ljxt\you_liao_table.frm           油料输入
+        c:\ljxt\lian_add_table.Frm           混炼配方输入
+        c:\ljxt\menu.frm                     菜单管理
+        c:\ljxt\new\f_errhlp.frm             错误帮助   
+        c:\ljxt\new\f_gd_lc.Frm              管道属性设置
+        c:\ljxt\new\f_showlc.Frm             生产流程动画显示
+        c:\ljxt\new\f_size.Frm               缩放生产流程动画显示窗口(未用)
+        c:\ljxt\new\F_ErrHis.frm             错误历史列表   
+        c:\ljxt\Date_form.frm                日期，时间设置
+        c:\ljxt\jiao_liao_table.frm          胶料输入
+        c:\ljxt\elec.frm                     电信号输入
+        c:\ljxt\error.Frm                    错误输入
+        c:\ljxt\elec_change.frm		    电信号输入	
+        c:\ljxt\elec_run.frm		    电信号运行	
+        c:\ljxt\Print_Form.frm		    生产统计显示，打印		
+        c:\ljxt\Produce_Form.frm	    密炼过程显示，打印	
+        c:\ljxt\wave.frm		    声音输入，播放	
+        c:\ljxt\FrmErrHelp.frm		    错误帮助输入	
+        c:\ljxt\frmLogin.frm		    密码输入	
+        c:\ljxt\frmFen_Pei_table.frm	    风送系统配方(风送系统运行，模拟)
+        c:\ljxt\Zu_gph.Frm                   温度曲线图
+        c:\ljxt\Zu_gp.Frm                    能量曲线图
+        c:\ljxt\zu_pro.frm		     统计查询界面	
+        c:\ljxt\zu_rmd.Frm		     温度，功率，密炼过程
+                                             查询界面	
+二、模块文件
+        c:\ljxt\VISDATA.BAS		     基本函数定义，申明	
+        c:\ljxt\Api232-b.bas		     多用户卡函数定义，申明		
+        c:\ljxt\new\runtkbas.bas	     动画函数定义，申明		
+三、类文件
+        c:\ljxt\new\CTestDFS.cls             生产流程流体网络算法测试
+四、主程序设置
+        c:\ljxt\visdata.vbp		     工程文件1		
+        c:\ljxt\visdata.vbw		     工程文件2（VB5)			
+五、数据库文件
+        c:\ljxt\COMM.MDB                通讯库
+        c:\ljxt\MAKE.MDB                统计库
+        c:\ljxt\LJXT.MDB                配方库
+        c:\ljxt\COMM.LDB                通讯索引
+        c:\ljxt\MAKE.LDB                统计索引
+        c:\ljxt\LJXT.LDB                配方索引
+六、生成文件
+        c:\ljxt\visdata.exe             可执行文件
+
+
+
+
+
+
+
+
+
+                动态联接库Z_LJ_DLL.DLL源程序清单
+						(第二版 含风送系统部分)
+											作者：朱国魂
+											1998.10.6日
+   说明：
+   本列表包含了炼胶生产系统z_lj_dll.dll文件的路径，重新编译时必须以原有路径设置好且对于主程序的设置不得修改，否则可能无法得到结果
+   编译条件：
+        Vitual C++ 5.0 或 Vitual C++ 4.0
+        要求:先安装炼胶系统安装程序，且可正确运行，否则，可能无法得到正确结果
+一、 头文件                                      
+名称				功能
+	DLL.H          		 供DLL,模拟，运行声明头文件
+	RESOURCE H            DLL资源头文件
+	TEMP.H           	  DLL自身头文件
+二、 C文件
+名称				功能
+	DLL.C				DLL主要文件
+	INSERT.C				生产统计文件
+	C1.C					配方文件
+	READ_DLL.C			电信号等数据交换文件
+	MULTIS~1.C			多屏卡文件
+	TEMP.C				DLL自身文件

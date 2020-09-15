@@ -1,0 +1,111 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resrc1.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "resource.h"
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Chinese (P.R.C.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+GENERICMENU MENU DISCARDABLE 
+BEGIN
+    POPUP "&I主菜单"
+    BEGIN
+        MENUITEM "&C产生线程",                  MENU_CREATE
+        MENUITEM "&K杀线程",                    MENU_KILL
+        MENUITEM "&A关于..",                    MENU_ABOUT
+    END
+    POPUP "&T通讯测试"
+    BEGIN
+        MENUITEM "&R读测试",                    MENU_COM_READ
+        MENUITEM "&W写测试",                    MENU_COM_WRITE
+        MENUITEM SEPARATOR
+        MENUITEM "读小料",                      Menu_Read_Xiao
+        MENUITEM "读生产命令",                  Menu_Read_Fen_Ban
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+ABOUTBOX DIALOG DISCARDABLE  22, 17, 144, 75
+STYLE DS_MODALFRAME | WS_CAPTION | WS_SYSMENU
+CAPTION "About WATCOM Generic"
+FONT 10, "System"
+BEGIN
+    CTEXT           "线程示意",IDC_STATIC,14,5,107,8
+    CTEXT           "版本 1.0",IDC_STATIC,0,14,144,8
+    DEFPUSHBUTTON   "OK",IDOK,53,59,32,14,WS_GROUP
+    ICON            "",IDC_STATIC,15,15,13,13
+    LTEXT           "设计者：朱国魂",IDC_STATIC,51,26,70,14
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resrc1.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""resource.h""\r\n"
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+#endif    // Chinese (P.R.C.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

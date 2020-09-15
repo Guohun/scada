@@ -1,0 +1,118 @@
+#include <windows.h>
+#include "dll.h"
+
+
+//dll->控制程序
+ int WINAPI read_produce(struct Produce_type  *temp)
+{
+	char *pdest;
+    int i;
+    
+    if (control_can_read!=CAN_READ) return WRITE_DOING;
+	if (can_run_flag==STOP_DOING)
+			
+		return  STOP_DOING;
+	
+		
+
+   /* send_run_table--->temp*/
+    temp->sj1_sum=send_pei_fan.sj1_sum;
+    temp->sj2_sum=send_pei_fan.sj2_sum;
+
+    temp->th1_sum=send_pei_fan.th1_sum;
+    temp->th2_sum=send_pei_fan.th2_sum;
+
+    temp->yz1_sum=send_pei_fan.yz1_sum;
+    temp->yz2_sum=send_pei_fan.yz2_sum;
+
+    temp->yt1_sum=send_pei_fan.yt1_sum;
+    temp->yt2_sum=send_pei_fan.yt2_sum;
+
+    temp->pei_max=send_pei_fan.pei_max;
+    memcpy((void *)&(temp->base),(void *)&(send_pei_fan.base),sizeof(send_pei_fan.base) );
+	for(i=0;i<send_pei_fan.th1_sum;i++)
+		memcpy((void *)&(temp->th1[i]), (void *)&(send_pei_fan.th1[i]),sizeof(send_pei_fan.th1[i]));
+	for(i=0;i<send_pei_fan.th2_sum;i++)
+		memcpy((void *)&(temp->th2[i]), (void *)&send_pei_fan.th2[i],sizeof(send_pei_fan.th2[i]));
+	for(i=0;i<send_pei_fan.sj1_sum;i++)
+		memcpy((void *)&(temp->sj1[i]), (void *)&send_pei_fan.sj1[i],sizeof(send_pei_fan.sj1[i]));
+
+    for(i=0;i<send_pei_fan.sj2_sum;i++)
+        memcpy((void *)&(temp->sj2[i]), (void *)&(send_pei_fan.sj2[i]),sizeof(send_pei_fan.sj2[i]));
+
+
+    for(i=0;i<send_pei_fan.yz1_sum;i++)
+        memcpy((void *)&(temp->yz1[i]), (void *)&(send_pei_fan.yz1[i]),sizeof(send_pei_fan.yz1[i]));
+
+    for(i=0;i<send_pei_fan.yz2_sum;i++)
+        memcpy((void *)&(temp->yz2[i]), (void *)&(send_pei_fan.yz2[i]),sizeof(send_pei_fan.yz2[i]));
+
+    for(i=0;i<send_pei_fan.yt1_sum;i++)
+        memcpy((void *)&(temp->yt1[i]), (void *)&(send_pei_fan.yt1[i]),sizeof(send_pei_fan.yt1[i]));
+
+    for(i=0;i<send_pei_fan.yt2_sum;i++)
+        memcpy((void *)&(temp->yt2[i]), (void *)&(send_pei_fan.yt2[i]),sizeof(send_pei_fan.yt2[i]));
+
+    for(i=0;i<send_pei_fan.pei_max;i++)
+        memcpy((void *)&(temp->huan[i]), (void *)&(send_pei_fan.huan[i]),sizeof(send_pei_fan.huan[i]));
+
+/*
+    把send_run_table中数据送入  produce_DO
+    返回 1
+*/
+    return 1;
+}
+
+// dll->控制程序
+ int WINAPI  read_run(struct run_table* x,int *run_flag)
+  {
+/*	if (can_run_flag==STOP_DOING)
+	{
+		*run_flag=STOP_DOING;
+		return  STOP_DOING;
+	}
+*/	
+	   *run_flag=can_run_flag;
+        memcpy(x, (void *)&send_run_table,sizeof(struct run_table));
+		
+/*		lstrcpy(x->name,send_run_table.name);
+		lstrcpy(x->_number,send_run_table._number);
+		x->total_che=send_run_table.total_che;
+		x->now_che=send_run_table.now_che;	/*第几车*/
+//		x->all_duan=send_run_table.all_duan;/* 总段 */
+//		x->ban=send_run_table.ban;		/*班  */
+//		x->mathine=send_run_table.mathine;  /*机号 */
+//		x->all_time=send_run_table.all_time;	  /*总工作时间 */
+//		x->all_che_time=send_run_table.all_che_time;	/*总一车时间 */
+//		x->duan_time=send_run_table.duan_time; /*段时间 */
+
+		//MessageBox(0,"asdf","adsfa",MB_OK);
+		
+        
+/*  
+  if (can_run_flag==STOP) return STOP_DOING;
+   *run_flag = CAN_RUN;
+   IF(can_read !=CAN_READ) return WRITE_Doing;
+   把send_run_table中数据送入  
+   返回 1
+*/
+    return 1;
+}
+
+ int WINAPI  write_run(struct run_table *x,int run_flag)
+  {
+        memcpy((void *)&send_run_table,x, sizeof(struct run_table));
+/*		lstrcpy(x->name,send_run_table.name);
+		lstrcpy(x->_number,send_run_table._number);
+		x->total_che=send_run_table.total_che;
+		x->now_che=send_run_table.now_che;	//第几车
+		x->all_duan=send_run_table.all_duan;// 总段 
+		x->ban=send_run_table.ban;		//班  
+		x->mathine=send_run_table.mathine;  //机号 
+		x->all_time=send_run_table.all_time;	 //*总工作时间 
+		x->all_che_time=send_run_table.all_che_time;	//总一车时间 
+		x->duan_time=send_run_table.duan_time; //*段时间 
+*/
+        can_run_flag=run_flag;
+    return 1;
+}

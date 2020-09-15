@@ -1,0 +1,318 @@
+Enabling the BackColor Property
+The first step in implementing the new painting behavior is to add the
+background color property (BackColor) to the control.BackColor, among others, is a stock property.
+<Picture>To add the BackColor property
+1.On the View menu, click ClassWizard.
+2.Click the Automation tab.
+3.From  the Class name drop-down list box, select CCircCtrl.
+4.Click Add Property.  The Add Property dialog box appears.
+5.From the External name drop-down combo box, select BackColor.
+6.Under Implementation, select Stock.
+7.Click OK to close the Add Property dialog box.
+
+This returns you to the Automation tab.
+Notice that the implementation of the BackColor property is listed as:
+
+Implementation:
+Stock Property
+
+8.Click OK again to confirm your choices and close ClassWizard. 
+
+ClassWizard creates the code to add the BackColor property,
+modifying both the CCircCtrl class and the type library file CIRC.ODL. 
+ClassWizard adds the DISP_STOCKPROP_BACKCOLOR macro in CCircCtrl class's
+dispatch map in CIRCCTL.CPP as shown below:
+BEGIN_DISPATCH_MAP(CCircCtrl, COleControl)
+    //{{AFX_DISPATCH_MAP(CCircCtrl)
+    DISP_STOCKPROP_BACKCOLOR()
+    //}}AFX_DISPATCH_MAP
+    DISP_FUNCTION_ID(CCircCtrl, "AboutBox", DISPID_ABOUTBOX, AboutBox, VT_EMPTY, VTS_NONE)
+END_DISPATCH_MAP()
+
+The control's type library file (CIRC.ODL) is modified by ClassWizard to
+add BackColor to its property section, as shown in the following code sample:
+ 
+dispinterface _DCirc
+{
+    properties:
+        // NOTE - ClassWizard will maintain property information here.
+        //    Use extreme caution when editing this section.
+        //{{AFX_ODL_PROP(CCircCtrl)
+        [id(DISPID_BACKCOLOR), bindable, requestedit] OLE_COLOR BackColor;
+        //}}AFX_ODL_PROP
+    methods:
+        // NOTE - ClassWizard will maintain method information here.
+        //    Use extreme caution when editing this section.
+        //{{AFX_ODL_METHOD(CCircCtrl)
+        //}}AFX_ODL_METHOD
+
+        [id(DISPID_ABOUTBOX)] void AboutBox();
+};
+
+
+Because the BackColor property is of type DISP_STOCKPROP_BACKCOLOR,
+its value can be modified only through its Get and Set methods.
+The value of the BackColor property is maintained by class COleControl.
+The SetBackColor member function of COleControl automatically calls the
+OnBackColorChanged member function after setting the BackColor value,
+invalidating the control. Invalidating the control causes the OnDraw function
+to be called, and the control is redrawn using the new background color.
+
+Modifying the Draw Behavior
+Now that you have enabled the Circle control's background color property
+and set its default background color, the final step is to modify
+the CCircCtrl::OnDraw function in CIRCCTL.CPP to implement the painting behavior.
+
+As created by ControlWizard, the CCircCtrl::OnDraw function implements
+the basic Circle control drawing behavior:
+void CCircCtrl::OnDraw(
+            CDC* pdc, const CRect& rcBounds, const CRect& rcInvalid)
+{
+    // TODO: Replace the following code with your own drawing code.
+    pdc->FillRect(rcBounds, CBrush::FromHandle((HBRUSH)GetStockObject(WHITE_BRUSH)));
+    pdc->Ellipse(rcBounds);
+
+}
+
+The default behavior of the OnDraw function is to draw an ellipse with a
+white background  exactly what was displayed in Test Container earlier.
+
+To modify OnDraw to use the background color value defined by the
+Circle control's BackColor property,remove the //TODO comment line and
+the line on which FillRect is called, and modify the code as follows
+(beginning with the fourth line in the code example, this is new code
+that you will be adding):
+void CCircCtrl::OnDraw(
+            CDC* pdc, const CRect& rcBounds, const CRect& rcInvalid)
+{
+    CBrush* pOldBrush;
+    CBrush bkBrush(TranslateColor(GetBackColor()));
+    CPen* pOldPen;
+
+    // Paint the background using the BackColor property
+    pdc->FillRect(rcBounds, &bkBrush);
+
+    // Draw the ellipse using the BackColor property and a black pen
+    pOldBrush = pdc->SelectObject(&bkBrush);
+    pOldPen = (CPen*)pdc->SelectStockObject(BLACK_PEN);
+    pdc->Ellipse(rcBounds);
+    pdc->SelectObject(pOldPen);
+    pdc->SelectObject(pOldBrush);
+}
+The code constructs a brush, called bkBrush, that uses the BackColor property
+color. Because a COLORREF value is expected for initializing the brush,
+and the BackColor property value is an OLE_COLOR value, TranslateColor is
+called first. The bounding rectangle of the control is painted
+using CDC::FillRect, specifying bkBrush as the fill brush.
+
+The ellipse is drawn within the bounding rectangle of the control using
+the CDC::Ellipse member function. Before the ellipse is drawn,
+the background color brush and the pen must be selected into the device context.
+This is done by calling CDC::SelectObject, as shown in the code.
+Now when the ellipse is drawn, it is filled with the proper background
+color and drawn using a black pen. Finally, the old brush and pen are
+selected back into the device context, restoring the device context to
+the state in which it entered the OnDraw function.
+
+Adding Controls to the Default Property Page
+
+When ControlWizard was used to create the Circle control, it included a default property page as part of the project. Property pages are listed in the property page ID table in CIRCCTL.CPP:
+
+
+
+
+BEGIN_PROPPAGEIDS(CCircCtrl, 3)
+    PROPPAGEID(CCircPropPage::guid)
+    PROPPAGEID(CLSID_CColorPropPage)
+    PROPPAGEID(CLSID_CFontPropPage)
+END_PROPPAGEIDS(CCircCtrl)
+
+
+The first entry in the Property page ID table is the default (or general) property page. The second and third entries are the stock color and font property pages that were added in Lesson 7, Handling Text and Fonts.
+
+Initially, the default property page dialog box template is empty. You can use the dialog editor to add controls to the default property page.
+
+<Picture>To add the Caption property to the default property page
+
+
+
+1.In the ResourceView pane, open the Circ project folder.2.Open the Dialog folder.3.Open the IDD_PROPPAGE_CIRC entry in the Dialog folder to edit the property page template.4.Right click the static text control and click Properties on the shortcut menu to open the Text Properties dialog box.5.Using the Text Properties dialog box, change the static text control caption to &Caption:.6.Select the Edit Box tool in the Controls toolbar and place an edit box control next to the static text control in the dialog box.7.Right click the edit box control and click Properties on the shortcut menu to open the Edit Properties dialog box.8.Using the Edit Properties dialog box, change the edit control's ID to IDC_CAPTION. 
+
+
+
+<Picture>To add the CircleOffset property to the default property page
+
+
+
+1.Select the Static Text tool in the Controls toolbar and place another static text control in the dialog box.2.Right click the static text control and click Properties on the shortcut menu to open the Text Properties dialog box.3.Using the Text Properties dialog box, change the static text control's caption to Circle&Offset:.4.Select the Edit Box tool in the Controls toolbar and place an edit box control next to the static text control in the dialog box.5.Right click the edit box control and click Properties on the shortcut menu to open the Edit Properties dialog box.6.Using the Edit Properties dialog box, change the edit control's ID to IDC_CIRCLEOFFSET. 
+
+
+
+<Picture>To add the CircleShape property to the default property page
+
+
+
+1.Select the Check Box tool in the Controls toolbar and place a check box control in the dialog box.2.Right click the check box control and click Properties on the shortcut menu to open the Check Box Properties dialog box.3.Using the Check Box Properties dialog box, change the check box's ID to IDC_CIRCLESHAPE and change the check box's caption to Circle&Shape; on the Styles tab, check the Left Text check box. 
+
+
+
+Once you have completed these procedures, arrange the controls using the Layout menu options and click Save on the File menu to save the property page template.
+
+Linking Controls with Properties
+
+Now that the property page has controls for displaying and modifying properties, the controls need to be linked to the properties. You can link controls in the property page with properties by using a shortcut to the Add Member Variable dialog box in ClassWizard.
+
+<Picture>To link the property page controls to properties
+
+
+
+1.In the ResourceView pane, open the Circ project folder.2.Open the Dialog folder.3.Open the IDD_PROPPAGE_CIRC entry in the Dialog folder to load the property page template.4.While holding down the CTRL key, double-click the edit box control for the Caption property. 
+
+The Add Member Variable dialog box of ClassWizard appears.
+
+5.After the m_ that is already in the Member variable name edit control, type caption, so the edit control contains m_caption.6.In the Category drop-down list box, click Value.7.In the Variable type drop-down list box, click CString.8.In the Optional property name drop-down combo box, click Caption.9.Click OK to close the Add Member Variable dialog box. 
+
+If you were to open ClassWizard, the Member Variables tab would contain the new member variable mapping for the Caption property, as shown below:
+
+
+
+
+Control IDs:                 Type      Member
+IDC_CAPTION                  CString   m_caption
+IDC_CIRCLEOFFSET
+IDC_CIRCLESHAPE
+
+
+10.Repeat steps 4 through 9, holding down the CTRL key and double-clicking the edit box control for the CircleOffset property, and entering the following values in the controls: 
+
+Member variable name: m_circleOffset 
+
+Category: Value
+
+Variable type: int
+
+Optional property name: CircleOffset
+
+11.Repeat steps 4 through 9, holding down the CTRL key and double-clicking the check box for the CircleShape property, and entering the following values in the controls: 
+
+Member variable name: m_circleShape 
+
+Category: Value
+
+Variable type: BOOL 
+
+Optional property name: CircleShape 
+
+If you were to open ClassWizard, the Member Variables tab would contain the new member variable mapping for the CircleShape property, as shown below:
+
+
+
+
+Control IDs:                 Type      Member
+IDC_CAPTION                  CString   m_caption
+IDC_CIRCLEOFFSET             int       m_circleOffset
+IDC_CIRCLESHAPE              BOOL      m_circleShape
+
+
+
+
+ClassWizard adds the member variables to the CCircPropPage class. ClassWizard also adds functions to the CCircPropPage class to initialize the member variables and to handle the exchange of data between the dialog controls, the member variables, and the properties.
+
+The m_caption, m_circleOffset, and m_circleShape member variables are declared in CIRCPPG.H:
+
+
+
+
+class CCircPropPage : public COlePropertyPage
+{
+    ...
+    //{{AFX_DATA(CCircPropPage)
+    ...
+    CString m_caption;
+    int m_circleOffset;
+    BOOL m_circleShape;
+    //}}AFX_DATA
+    ...
+};
+
+
+The member variables are initialized in the constructor for the CCircPropPage class, the CCircPropPage function in CIRCPPG.CPP:
+
+
+
+
+CCircPropPage::CCircPropPage() :
+    COlePropertyPage(IDD, IDS_CIRCCTRL_PPG_CAPTION)
+{
+    //{{AFX_DATA_INIT(CCircPropPage)
+    m_caption = _T("");
+    m_circleOffset = 0;
+    m_circleShape = FALSE;
+    //}}AFX_DATA_INIT
+}
+
+
+Notice that strings assigned to member variables are first passed through the _T macro. This is the same macro used for string parameters to PX_ functions in CCircCtrl::DoPropExchange. The _T macro is used to maintain compatibility between different string representations, and it must be used for all literal strings in an ActiveX control project.
+
+Data transfer is handled by the DDP_ and DDX_ macros in the DoDataExchange function in CIRCPPG.CPP:
+
+
+
+
+void CCircPropPage::DoDataExchange(CDataExchange* pDX)
+{
+    //{{AFX_DATA_MAP(CCircPropPage)
+    DDP_Text(pDX, IDC_CAPTION, m_caption, _T("Caption"));
+    DDX_Text(pDX, IDC_CAPTION, m_caption);
+    DDP_Text(pDX, IDC_CIRCLEOFFSET, m_circleOffset, _T("CircleOffset"));
+    DDX_Text(pDX, IDC_CIRCLEOFFSET, m_circleOffset);
+    DDP_Check(pDX, IDC_CIRCLESHAPE, m_circleShape, _T("CircleShape"));
+    DDX_Check(pDX, IDC_CIRCLESHAPE, m_circleShape);
+    //}}AFX_DATA_MAP
+    DDP_PostProcessing(pDX);
+}
+
+
+The DDX_ macros are the same macros used for standard MFC dialog boxes. They synchronize dialog controls with dialog member variables. The DDP_macros are used only in ActiveX control property pages. They synchronize property page dialog member variables with specific control properties. Translations between an edit control and a short value and between a check box and a BOOL value are automatic. Similar to strings assigned to member variables, strings passed as parameters to DDP_ macros are first passed through the _T macro.
+
+The Circle control now has a general property page that can be used to display and modify the values of several of its properties. The IDC_CAPTION edit control, IDC_CIRCLEOFFSET edit control, and IDC_CIRCLESHAPE check box are linked through property page member variables to the Caption, CircleOffset, and CircleShape properties, respectively. Between the default property page added in this lesson and the stock color and font property pages added earlier, all Circle control properties can now be accessed through property pages.
+
+Firing the ClickOut Event
+
+ClickOut fires under a condition opposite to the condition that fires ClickIn. You must modify the OnLButtonDown function in CIRCCTL.CPP to call FireClickOut when the insertion point is not within the circle (that is, the InCircle function returns FALSE). The FireClickOut function fires the event.
+
+Add the following lines of code to CIRCCTL.CPP:
+
+
+
+
+    else
+        // Fire the ClickOut event
+        FireClickOut();
+
+
+as shown in the code example:
+
+
+
+
+void CCircCtrl::OnLButtonDown(UINT nFlags, CPoint point)
+{
+    CDC*    pdc;
+
+    // Flash the color of the control if within the ellipse.
+    if (InCircle(point))
+    {
+        pdc = GetDC();
+        FlashColor(pdc);
+        ReleaseDC(pdc);
+
+        // Fire the ClickIn event
+        FireClickIn(point.x, point.y);
+    }
+    else
+        // Fire the ClickOut event
+        FireClickOut();
+
+    COleControl::OnLButtonDown(nFlags, point);
+}
